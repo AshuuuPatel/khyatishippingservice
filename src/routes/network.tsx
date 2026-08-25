@@ -22,7 +22,7 @@ export const Route = createFileRoute("/network")({
       },
     ],
   }),
-  component: Network;
+  component: Network,
 });
 
 const ports = [
