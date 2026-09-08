@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Send, User } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -32,6 +32,8 @@ export const Route = createFileRoute("/contact")({
         content:
           "Tell us your POL, POD and container requirement and our team will respond with a competitive rate.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Contact,
@@ -43,12 +45,17 @@ const containerTypes = [
   "40' High Cube",
   "20' Open Top",
   "40' Open Top",
-  "Flat Rack",
+  "20' Flat Rack",
+  "40' Flat Rack",
+  "20' Reefer",
+  "40' Reefer",
   "Other / Not sure",
 ];
 
 function Contact() {
   const [containerType, setContainerType] = useState("");
+  const isSpecialContainer = containerType.includes("Open Top") || containerType.includes("Flat Rack");
+  const isReefer = containerType.includes("Reefer");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -64,9 +71,23 @@ function Contact() {
       `Email: ${data.get("email")}`,
       `POL: ${data.get("pol")}`,
       `POD: ${data.get("pod")}`,
+      `HS Code: ${data.get("hsCode") || "-"}`,
+      `Shipment planning date: ${data.get("planningDate") || "-"}`,
       `Container type: ${containerType || "-"}`,
+      ...(isSpecialContainer
+        ? [
+            `Dimensions: ${data.get("dimensions") || "-"}`,
+            `Weight: ${data.get("weight") || "-"}`,
+          ]
+        : []),
+      ...(isReefer
+        ? [
+            `Temperature: ${data.get("temperature") || "-"}`,
+            `Humidity: ${data.get("humidity") || "-"}`,
+          ]
+        : []),
       "",
-      `Cargo details: ${data.get("cargo")}`,
+      `Remarks: ${data.get("remarks") || "-"}`,
     ].join("\n");
 
     window.location.href = `mailto:pricing@khyatishipping.com?subject=${encodeURIComponent(
@@ -125,6 +146,14 @@ function Contact() {
                   <Label htmlFor="pod">POD (Port of Discharge)</Label>
                   <Input id="pod" name="pod" required placeholder="e.g. Jebel Ali" />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="hsCode">HS Code</Label>
+                  <Input id="hsCode" name="hsCode" placeholder="e.g. 3901" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="planningDate">Shipment Planning Date</Label>
+                  <Input id="planningDate" name="planningDate" type="date" />
+                </div>
                 <div className="space-y-2 sm:col-span-2">
                   <Label htmlFor="container">Container type</Label>
                   <Select value={containerType} onValueChange={setContainerType}>
@@ -140,13 +169,37 @@ function Contact() {
                     </SelectContent>
                   </Select>
                 </div>
+                {isSpecialContainer && (
+                  <>
+                    <div className="space-y-2">
+                      <Label htmlFor="dimensions">Dimensions</Label>
+                      <Input id="dimensions" name="dimensions" placeholder="Length × width × height" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="weight">Weight</Label>
+                      <Input id="weight" name="weight" placeholder="e.g. 12,000 kg" />
+                    </div>
+                  </>
+                )}
+                {isReefer && (
+                  <>
+                    <div className="space-y-2">
+                      <Label htmlFor="temperature">Temperature</Label>
+                      <Input id="temperature" name="temperature" placeholder="e.g. -18°C" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="humidity">Humidity</Label>
+                      <Input id="humidity" name="humidity" placeholder="e.g. 60% RH" />
+                    </div>
+                  </>
+                )}
                 <div className="space-y-2 sm:col-span-2">
-                  <Label htmlFor="cargo">Cargo details</Label>
+                  <Label htmlFor="remarks">Remarks</Label>
                   <Textarea
-                    id="cargo"
-                    name="cargo"
+                    id="remarks"
+                    name="remarks"
                     rows={5}
-                    placeholder="Commodity, weight, number of containers, readiness date…"
+                    placeholder="Commodity, number of containers, readiness date…"
                   />
                 </div>
               </div>
@@ -188,20 +241,6 @@ function Contact() {
                     </a>
                   </li>
                 </ul>
-              </div>
-              <div className="border-t border-border pt-8">
-                <p className="eyebrow">Sales</p>
-                <div className="mt-6 flex gap-3 text-sm">
-                  <User className="mt-0.5 size-4 shrink-0 text-accent" />
-                  <span>
-                    <span className="block font-display text-lg text-foreground">Sandeep Dana</span>
-                    Sales Executive
-                    <br />
-                    <a href="tel:+917041048144" className="text-muted-foreground hover:text-accent">
-                      +91 70410 48144
-                    </a>
-                  </span>
-                </div>
               </div>
               <div className="surface-navy p-8">
                 <p className="font-display text-xl text-navy-foreground">

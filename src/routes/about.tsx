@@ -19,6 +19,8 @@ export const Route = createFileRoute("/about")({
         content:
           "Over a decade of expertise in international trade, containerised cargo movement, documentation and customer support.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: About,
