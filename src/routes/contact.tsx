@@ -247,7 +247,7 @@ function Contact() {
                   Your Cargo, Our Commitment.
                 </p>
                 <p className="mt-3 text-sm text-navy-foreground/70">
-                  India · Gulf · Far East · Vietnam · Indonesia · Malaysia · North India ICDs · Iran
+                  India · Gulf · Far East · Vietnam · Indonesia · Malaysia · North India ICDs
                 </p>
               </div>
             </div>

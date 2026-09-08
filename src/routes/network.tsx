@@ -94,7 +94,7 @@ function Network() {
           <div className="mx-auto max-w-3xl px-5 py-20 text-center lg:px-8">
             <p className="eyebrow">Coverage</p>
             <h2 className="mt-4 font-display text-3xl lg:text-4xl">
-              India · Gulf · Far East · Vietnam · Indonesia · Malaysia · North India ICDs · Iran
+              India · Gulf · Far East · Vietnam · Indonesia · Malaysia · North India ICDs
             </h2>
             <p className="mt-6 text-muted-foreground">
               We continue to expand our international network so exporters and importers get
