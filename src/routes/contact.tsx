@@ -183,8 +183,8 @@ function Contact() {
                   </li>
                   <li className="flex gap-3">
                     <Phone className="mt-0.5 size-4 shrink-0 text-accent" />
-                    <a href="tel:+917041048144" className="hover:text-accent">
-                      +91 70410 48144
+                    <a href="tel:+919054731045" className="hover:text-accent">
+                      +91 9054731045
                     </a>
                   </li>
                 </ul>
