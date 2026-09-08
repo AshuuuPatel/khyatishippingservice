@@ -22,6 +22,8 @@ export const Route = createFileRoute("/services")({
         content:
           "Own container NVOCC operations, container trading, freight forwarding and documentation support backed by 10+ years of experience.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Services,

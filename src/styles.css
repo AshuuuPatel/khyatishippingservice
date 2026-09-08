@@ -173,9 +173,9 @@
 @utility hero-scrim {
   background: linear-gradient(
     100deg,
-    oklch(0.15 0.035 250 / 0.94) 0%,
-    oklch(0.17 0.04 248 / 0.82) 45%,
-    oklch(0.2 0.05 240 / 0.35) 100%
+    oklch(0.15 0.035 250 / 0.68) 0%,
+    oklch(0.17 0.04 248 / 0.45) 45%,
+    oklch(0.2 0.05 240 / 0.12) 100%
   );
 }
 

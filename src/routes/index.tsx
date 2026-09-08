@@ -23,6 +23,8 @@ export const Route = createFileRoute("/")({
         content:
           "Reliable NVOCC solutions, own containers, container trading and freight forwarding across Gulf, Far East, Vietnam, Indonesia, Malaysia and Red Sea.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
