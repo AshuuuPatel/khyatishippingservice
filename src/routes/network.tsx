@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Anchor, Globe2 } from "lucide-react";
 
-import heroImg from "@/assets/hero-port.jpg";
+import heroImg from "@/assets/hero-port-bright.jpg";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 

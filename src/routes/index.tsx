@@ -1,9 +1,9 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Container, FileCheck2, Globe2, Handshake, Package, Ship } from "lucide-react";
 
-import documentationImg from "@/assets/documentation.jpg";
-import heroImg from "@/assets/hero-port.jpg";
-import terminalImg from "@/assets/terminal-aerial.jpg";
+import documentationImg from "@/assets/documentation-bright.jpg";
+import heroImg from "@/assets/hero-port-bright.jpg";
+import terminalImg from "@/assets/terminal-aerial-bright.jpg";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";

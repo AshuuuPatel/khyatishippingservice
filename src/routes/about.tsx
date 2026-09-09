@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import terminalImg from "@/assets/terminal-aerial.jpg";
+import terminalImg from "@/assets/terminal-aerial-bright.jpg";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 

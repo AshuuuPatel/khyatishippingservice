@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import documentationImg from "@/assets/documentation.jpg";
-import freightImg from "@/assets/freight-forwarding.jpg";
+import documentationImg from "@/assets/documentation-bright.jpg";
+import freightImg from "@/assets/freight-forwarding-bright.jpg";
 import containersAsset from "@/assets/own-containers.png.asset.json";
-import terminalImg from "@/assets/terminal-aerial.jpg";
+import terminalImg from "@/assets/terminal-aerial-bright.jpg";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 

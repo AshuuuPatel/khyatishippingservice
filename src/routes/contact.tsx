@@ -54,6 +54,7 @@ const containerTypes = [
 
 function Contact() {
   const [containerType, setContainerType] = useState("");
+  const [cargoType, setCargoType] = useState("");
   const isSpecialContainer = containerType.includes("Open Top") || containerType.includes("Flat Rack");
   const isReefer = containerType.includes("Reefer");
 
@@ -74,6 +75,7 @@ function Contact() {
       `HS Code: ${data.get("hsCode") || "-"}`,
       `Shipment planning date: ${data.get("planningDate") || "-"}`,
       `Container type: ${containerType || "-"}`,
+      `Cargo type: ${cargoType || "-"}`,
       ...(isSpecialContainer
         ? [
             `Dimensions: ${data.get("dimensions") || "-"}`,
@@ -154,7 +156,7 @@ function Contact() {
                   <Label htmlFor="planningDate">Shipment Planning Date</Label>
                   <Input id="planningDate" name="planningDate" type="date" />
                 </div>
-                <div className="space-y-2 sm:col-span-2">
+                <div className="space-y-2">
                   <Label htmlFor="container">Container type</Label>
                   <Select value={containerType} onValueChange={setContainerType}>
                     <SelectTrigger id="container">
@@ -166,6 +168,22 @@ function Contact() {
                           {t}
                         </SelectItem>
                       ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="cargoType">Cargo type</Label>
+                  <Select value={cargoType} onValueChange={setCargoType}>
+                    <SelectTrigger id="cargoType">
+                      <SelectValue placeholder="Select cargo type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="General Cargo">General Cargo</SelectItem>
+                      <SelectItem value="Dry Bulk">Dry Bulk</SelectItem>
+                      <SelectItem value="Perishable Cargo">Perishable Cargo</SelectItem>
+                      <SelectItem value="Hazardous Cargo">Hazardous Cargo</SelectItem>
+                      <SelectItem value="Oversized Cargo">Oversized Cargo</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
