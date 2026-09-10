@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
-import { useState } from "react";
+import { Calculator, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Request a shipping quote from Khyati Shipping Services Pvt Ltd, Gandhidham. Share POL, POD, container type and cargo details, or reach us by phone and email.",
+          "Request a shipping quote from Khyati Shipping Services Pvt Ltd, Gandhidham. Share route, container, cargo and schedule details, or reach us by phone and email.",
       },
       { property: "og:title", content: "Request a Quote | Khyati Shipping Services" },
       {
@@ -52,13 +52,49 @@ const containerTypes = [
   "Other / Not sure",
 ];
 
+const ports = ["Mundra", "Kandla", "Nhava Sheva", "Tuna Port", "Pipavav Port", "North India ICDs"];
+const sectors = ["Gulf", "Far East", "Vietnam", "Indonesia", "Malaysia", "Red Sea"];
+const sectorRates: Record<string, number> = {
+  Gulf: 850,
+  "Far East": 1050,
+  Vietnam: 1125,
+  Indonesia: 1175,
+  Malaysia: 1150,
+  "Red Sea": 1325,
+};
+const portAdjustments: Record<string, number> = {
+  Mundra: 0,
+  Kandla: 35,
+  "Nhava Sheva": 75,
+  "Tuna Port": 40,
+  "Pipavav Port": 55,
+  "North India ICDs": 220,
+};
+const containerMultipliers: Record<string, number> = {
+  "20' Standard": 1,
+  "40' Standard": 1.65,
+  "40' High Cube": 1.75,
+  "20' Open Top": 1.35,
+  "40' Open Top": 2.05,
+  "20' Flat Rack": 1.5,
+  "40' Flat Rack": 2.3,
+  "20' Reefer": 2.2,
+  "40' Reefer": 3.35,
+};
+
 function Contact() {
   const [containerType, setContainerType] = useState("");
-  const [cargoType, setCargoType] = useState("");
+  const [ratePort, setRatePort] = useState("Mundra");
+  const [rateSector, setRateSector] = useState("Gulf");
   const isSpecialContainer = containerType.includes("Open Top") || containerType.includes("Flat Rack");
   const isReefer = containerType.includes("Reefer");
+  const baseRate = (sectorRates[rateSector] ?? 0) + (portAdjustments[ratePort] ?? 0);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function getRate(type: string) {
+    return Math.round(baseRate * (containerMultipliers[type] ?? 1));
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -75,7 +111,8 @@ function Contact() {
       `HS Code: ${data.get("hsCode") || "-"}`,
       `Shipment planning date: ${data.get("planningDate") || "-"}`,
       `Container type: ${containerType || "-"}`,
-      `Cargo type: ${cargoType || "-"}`,
+      `Cargo detail: ${data.get("cargoDetail") || "-"}`,
+      `Indicative rate: ${containerType && containerMultipliers[containerType] ? `$${getRate(containerType).toLocaleString()} / container` : "-"}`,
       ...(isSpecialContainer
         ? [
             `Dimensions: ${data.get("dimensions") || "-"}`,
@@ -92,7 +129,7 @@ function Contact() {
       `Remarks: ${data.get("remarks") || "-"}`,
     ].join("\n");
 
-    window.location.href = `mailto:pricing@khyatishipping.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:info@khyatishipping.com?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
     toast.success("Opening your email app with the quote request prepared.");
@@ -116,7 +153,7 @@ function Contact() {
 
         <section id="quote" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr]">
-            <form onSubmit={handleSubmit} className="bg-card p-8 shadow-card lg:p-10">
+              <form onSubmit={handleSubmit} className="bg-card p-8 shadow-card lg:p-10">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
@@ -172,20 +209,13 @@ function Contact() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="cargoType">Cargo type</Label>
-                  <Select value={cargoType} onValueChange={setCargoType}>
-                    <SelectTrigger id="cargoType">
-                      <SelectValue placeholder="Select cargo type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="General Cargo">General Cargo</SelectItem>
-                      <SelectItem value="Dry Bulk">Dry Bulk</SelectItem>
-                      <SelectItem value="Perishable Cargo">Perishable Cargo</SelectItem>
-                      <SelectItem value="Hazardous Cargo">Hazardous Cargo</SelectItem>
-                      <SelectItem value="Oversized Cargo">Oversized Cargo</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="cargoDetail">Cargo Detail</Label>
+                  <Input
+                    id="cargoDetail"
+                    name="cargoDetail"
+                    required
+                    placeholder="Commodity, quantity, packing or HS description"
+                  />
                 </div>
                 {isSpecialContainer && (
                   <>
@@ -217,7 +247,7 @@ function Contact() {
                     id="remarks"
                     name="remarks"
                     rows={5}
-                    placeholder="Commodity, number of containers, readiness date…"
+                    placeholder="Number of containers, readiness date or any other request…"
                   />
                 </div>
               </div>
@@ -227,6 +257,61 @@ function Contact() {
             </form>
 
             <div className="space-y-10">
+              <div className="bg-card p-8 shadow-card">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="eyebrow">Live rate guide</p>
+                    <h2 className="mt-3 font-display text-2xl">Plan your route</h2>
+                  </div>
+                  <Calculator className="size-5 text-accent" />
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  Indicative ocean rates in USD per container. Final pricing depends on cargo, space and sailing schedule.
+                </p>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                  <div className="space-y-2">
+                    <Label htmlFor="ratePort">Load port</Label>
+                    <Select value={ratePort} onValueChange={setRatePort}>
+                      <SelectTrigger id="ratePort">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ports.map((port) => (
+                          <SelectItem key={port} value={port}>
+                            {port}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="rateSector">Destination sector</Label>
+                    <Select value={rateSector} onValueChange={setRateSector}>
+                      <SelectTrigger id="rateSector">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sectors.map((sector) => (
+                          <SelectItem key={sector} value={sector}>
+                            {sector}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border">
+                  {containerTypes.filter((type) => type !== "Other / Not sure").map((type) => (
+                    <div
+                      key={type}
+                      className={`bg-background p-3 ${containerType === type ? "ring-2 ring-inset ring-accent" : ""}`}
+                    >
+                      <p className="text-xs text-muted-foreground">{type}</p>
+                      <p className="mt-1 font-display text-lg">${getRate(type).toLocaleString()}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div>
                 <p className="eyebrow">Head Office</p>
                 <ul className="mt-6 space-y-5 text-sm text-muted-foreground">

@@ -11,6 +11,7 @@ const nav = [
   { to: "/about", label: "About Us" },
   { to: "/services", label: "Services" },
   { to: "/network", label: "Network" },
+  { to: "/booking", label: "Booking" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
