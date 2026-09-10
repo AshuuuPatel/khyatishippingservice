@@ -51,6 +51,16 @@ export function SiteFooter() {
                 Request a Quote
               </Link>
             </li>
+            <li>
+              <Link to="/booking" className="hover:text-steel">
+                Book a Shipment
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="hover:text-steel">
+                Terms &amp; Conditions
+              </Link>
+            </li>
           </ul>
         </div>
 
