@@ -3,6 +3,7 @@ import { ArrowRight, Container, FileCheck2, Globe2, Handshake, Package, Ship } f
 
 import documentationImg from "@/assets/documentation-bright.jpg";
 import heroImg from "@/assets/hero-port-bright.jpg";
+import whyKhyatiImg from "@/assets/why-khyati.jpg";
 import terminalImg from "@/assets/terminal-aerial-bright.jpg";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -225,8 +226,8 @@ function Home() {
           <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
             <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
               <img
-                src={documentationImg}
-                alt="Bill of lading documentation on a desk beside a laptop"
+                src={whyKhyatiImg}
+                alt="Colourful shipping containers and gantry cranes at a busy port on a bright day"
                 width={1400}
                 height={1000}
                 loading="lazy"
