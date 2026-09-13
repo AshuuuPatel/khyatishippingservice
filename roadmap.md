@@ -1,4 +1,5 @@
-- [ ] Update quote form: manual Cargo Detail, rate calculator, and complete submission details
-- [ ] Add booking page with route, cargo, container, schedule, and confirmation-ready flow
-- [ ] Add Terms and Conditions page and footer link
-- [ ] Connect real app-email delivery after sender domain verification
+# Roadmap
+
+- [ ] Complete SEO foundations across public pages
+- [ ] Add clear supply chain management service content and navigation
+- [ ] Verify metadata, links, and page rendering
