@@ -91,6 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Connecting your cargo to the world with reliable NVOCC solutions.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Khyati Shipping Services Pvt Ltd" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -105,6 +106,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Marcellus&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap",
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Khyati Shipping Services Pvt Ltd",
+          url: "https://khyatishippingservice.lovable.app",
+          email: "info@khyatishipping.com",
+          telephone: "+91 9054731045",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Swami Narayan Building, Office No. 11A, 1st Floor, Ward No. 9/C",
+            addressLocality: "Gandhidham",
+            postalCode: "370201",
+            addressRegion: "Gujarat",
+            addressCountry: "IN",
+          },
+          areaServed: ["India", "Gulf", "Far East", "Vietnam", "Indonesia", "Malaysia"],
+          knowsAbout: [
+            "NVOCC services",
+            "container trading",
+            "international freight forwarding",
+            "supply chain management",
+            "shipping documentation",
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

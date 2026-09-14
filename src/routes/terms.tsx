@@ -11,8 +11,10 @@ export const Route = createFileRoute("/terms")({
       { property: "og:title", content: "Terms & Conditions | Khyati Shipping Services" },
       { property: "og:description", content: "Review the general terms that apply to shipping enquiries and bookings." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/terms" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/terms" }],
   }),
   component: Terms,
 });

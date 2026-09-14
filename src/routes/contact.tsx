@@ -33,8 +33,10 @@ export const Route = createFileRoute("/contact")({
           "Tell us your POL, POD and container requirement and our team will respond with a competitive rate.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/contact" }],
   }),
   component: Contact,
 });

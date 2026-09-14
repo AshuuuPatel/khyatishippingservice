@@ -10,21 +10,23 @@ import { SiteHeader } from "@/components/site-header";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | NVOCC, Container Trading & Freight Forwarding" },
+      { title: "Services | NVOCC, Freight Forwarding & SCM" },
       {
         name: "description",
         content:
-          "NVOCC with own containers, container trading, international freight forwarding and shipping documentation support from Khyati Shipping Services Pvt Ltd.",
+          "NVOCC, container trading, freight forwarding, supply chain management and shipping documentation support from Khyati Shipping Services Pvt Ltd.",
       },
       { property: "og:title", content: "Our Services | Khyati Shipping Services" },
       {
         property: "og:description",
         content:
-          "Own container NVOCC operations, container trading, freight forwarding and documentation support backed by 10+ years of experience.",
+          "Own container NVOCC operations, container trading, freight forwarding and supply chain coordination backed by 10+ years of experience.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/services" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/services" }],
   }),
   component: Services,
 });
@@ -83,6 +85,11 @@ function Services() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a href="#supply-chain-management" className="hover:text-steel">
+                  Supply Chain Management
+                </a>
+              </li>
             </ul>
           </div>
         </section>
@@ -118,6 +125,35 @@ function Services() {
             </div>
           </section>
         ))}
+
+        <section id="supply-chain-management" className="bg-sand scroll-mt-24">
+          <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
+            <div className="max-w-3xl">
+              <p className="eyebrow">05 · Supply chain management</p>
+              <h2 className="rule-accent mt-4 font-display text-3xl lg:text-4xl">
+                Better visibility from booking to delivery
+              </h2>
+              <p className="mt-8 text-muted-foreground">
+                Khyati Shipping Services helps exporters, importers and trading companies coordinate
+                the moving parts of an international shipment. We bring together route planning,
+                container availability, carrier coordination, documentation, port handling and
+                shipment updates so each milestone is easier to manage.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
+              {[
+                ["Plan", "Review route, cargo, equipment and sailing requirements before booking."],
+                ["Coordinate", "Keep carriers, ports, documentation and inland partners aligned."],
+                ["Update", "Share clear milestone communication as the shipment progresses."],
+              ].map(([title, body]) => (
+                <div key={title} className="bg-background p-7">
+                  <h3 className="font-display text-xl">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </div>

@@ -20,8 +20,10 @@ export const Route = createFileRoute("/about")({
           "Over a decade of expertise in international trade, containerised cargo movement, documentation and customer support.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/about" }],
   }),
   component: About,
 });
@@ -59,8 +61,8 @@ function About() {
               </strong>
               , offering flexible logistics solutions designed to meet the requirements of
               exporters, importers and businesses across global markets. From booking and
-              documentation to cargo movement and coordination, our focus is on professional service
-              with clear communication and dependable support.
+              documentation to cargo movement, supply chain coordination and delivery planning, our
+              focus is on professional service with clear communication and dependable support.
             </p>
             <p>
               Our experienced and specialised team brings over 10 years of expertise in
