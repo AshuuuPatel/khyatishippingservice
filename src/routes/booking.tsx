@@ -21,8 +21,10 @@ export const Route = createFileRoute("/booking")({
       { property: "og:title", content: "Book a Shipment | Khyati Shipping Services" },
       { property: "og:description", content: "Plan your next shipment with Khyati Shipping Services." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/booking" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/booking" }],
   }),
   component: Booking,
 });

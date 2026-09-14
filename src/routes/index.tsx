@@ -25,8 +25,10 @@ export const Route = createFileRoute("/")({
           "Reliable NVOCC solutions, own containers, container trading and freight forwarding across Gulf, Far East, Vietnam, Indonesia, Malaysia and Red Sea.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/" }],
   }),
   component: Home,
 });
@@ -52,6 +54,11 @@ const services = [
     title: "Documentation Support",
     text: "A specialised team with 10+ years of experience keeping paperwork accurate and timely.",
   },
+      {
+        icon: Handshake,
+        title: "Supply Chain Management",
+        text: "Practical coordination across booking, transport, documentation and delivery milestones.",
+      },
 ];
 
 const reasons = [
@@ -100,7 +107,8 @@ function Home() {
             </h1>
             <p className="mt-6 max-w-xl text-base text-navy-foreground/75 lg:text-lg">
               Khyati Shipping Services Pvt. Ltd. provides reliable and efficient NVOCC solutions,
-              connecting businesses with global shipping opportunities.
+              freight forwarding and supply chain management, connecting businesses with global
+              shipping opportunities.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild size="lg">

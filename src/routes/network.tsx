@@ -21,8 +21,10 @@ export const Route = createFileRoute("/network")({
           "Load ports across western India and trade sectors covering Gulf, Far East, Vietnam, Indonesia, Malaysia and Red Sea.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://khyatishippingservice.lovable.app/network" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://khyatishippingservice.lovable.app/network" }],
   }),
   component: Network,
 });
