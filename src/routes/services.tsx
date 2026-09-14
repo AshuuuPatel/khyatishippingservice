@@ -10,17 +10,17 @@ import { SiteHeader } from "@/components/site-header";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | NVOCC, Container Trading & Freight Forwarding" },
+      { title: "Services | NVOCC, Freight Forwarding & SCM" },
       {
         name: "description",
         content:
-          "NVOCC with own containers, container trading, international freight forwarding and shipping documentation support from Khyati Shipping Services Pvt Ltd.",
+          "NVOCC, container trading, freight forwarding, supply chain management and shipping documentation support from Khyati Shipping Services Pvt Ltd.",
       },
       { property: "og:title", content: "Our Services | Khyati Shipping Services" },
       {
         property: "og:description",
         content:
-          "Own container NVOCC operations, container trading, freight forwarding and documentation support backed by 10+ years of experience.",
+          "Own container NVOCC operations, container trading, freight forwarding and supply chain coordination backed by 10+ years of experience.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://khyatishippingservice.lovable.app/services" },
@@ -85,6 +85,11 @@ function Services() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a href="#supply-chain-management" className="hover:text-steel">
+                  Supply Chain Management
+                </a>
+              </li>
             </ul>
           </div>
         </section>
